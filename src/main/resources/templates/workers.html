@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Worker List</title>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-between mb-2 mt-3">
+        <div>
+            <p class="h2">List of Workers</p>
+        </div>
+        <div>
+            <a aria-pressed="true" class="btn btn-primary btn-lg active" role="button"
+               th:href="@{/worker/add}">Add Worker</a>
+        </div>
+        <div>
+            <form action="#" class="form-inline my-2 my-lg-0 ml-10" method="get" th:action="@{/worker}">
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="worker : ${workers}">
+                    <th scope="row"><a th:href="@{'/worker/' + ${worker.id} + '/update'}" th:text="${worker.id}"></a>
+                    </th>
+                    <td th:text="${worker.name}"></td>
+                    <td th:text="${worker.surname}"></td>
+                    <td th:text="${worker.position}"></td>
+                    <td>
+                        <form th:action="@{'/worker/' + ${worker.id}}" th:method="post">
+                            <button type="submit">X</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
