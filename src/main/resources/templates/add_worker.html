@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add worker</title>
+</head>
+<body>
+<div class="container">
+    <form action="#" class="form-horizontal" method="post"
+          th:action="${worker.id} ? @{'/worker/' + ${worker.id} + '/update'} : @{/worker}" th:object="${worker}">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Form Name</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="name">Name</label>
+                <div class="col-md-4">
+                    <input class="form-control input-md" id="name" name="name" placeholder="Name" th:field="*{name}"
+                           type="text">
+                    <span class="help-block" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="surname">Surname</label>
+                <div class="col-md-4">
+                    <input class="form-control input-md" id="surname" name="surname" placeholder="Surname"
+                           th:field="*{surname}" type="text">
+                    <span class="help-block" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"></span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="position">Position</label>
+                <div class="col-md-4">
+                    <input class="form-control input-md" id="position" name="position" placeholder="Position"
+                           th:field="*{position}" type="text">
+                    <span class="help-block" th:errors="*{position}" th:if="${#fields.hasErrors('position')}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" id="submit" name="submit"
+                            th:text="${worker.id} ? 'Add worker' : 'Change data'" type="submit"></button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
