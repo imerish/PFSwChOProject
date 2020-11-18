@@ -4,8 +4,6 @@ COPY pom.xml /project
 RUN mvn -f /project/pom.xml clean package
 
 FROM openjdk:8
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
 COPY --from=build /project/target/PFSwChOProject-1.0.0-SNAPSHOT.jar /project/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/project/app.jar"]
